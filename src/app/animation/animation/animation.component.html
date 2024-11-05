@@ -1,0 +1,25 @@
+<div class="centered-container">
+    <br>
+    <div class="p-field p-input-icon-right full-width">
+      <i class="pi pi-search" (click)="loadPokemon()"></i>
+      <label for="pokemonName">Ingrese el nombre de un Pokémon</label>
+      <input id="pokemonName" pInputText (input)="updateName($event)" />
+    </div>
+  
+    <div class="loader-container" *ngIf="loading$ | async">
+      <p-progressSpinner styleClass="custom-spinner" strokeWidth="4" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+    </div>
+  
+    <h1 *ngIf="pokemonData$ | async as data">{{ data.species.name }}</h1>
+    <img 
+      *ngIf="currentSprite$ | async as currentSprite"
+      [src]="currentSprite"
+      #pokemonImage
+      alt="Imagen de animación"
+      height="150"
+      width="150"
+    />
+  
+    <p-toast></p-toast>
+  </div>
+  
